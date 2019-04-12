@@ -1,11 +1,14 @@
 <template>
   <div class="dito">
-    <div v-for="(item, index) in events" :key="index">
-      <p>{{moment(item.timestamp).format('DD/MM/YYYY') }}</p>
-      <p>{{moment(item.timestamp).format('hh:mm') }}</p>
-
-      <div v-for="(custom, index) in item.custom_data" :key="index">
-        <p>{{ custom.key }} {{ custom.value }}</p>
+    <div class="store" v-for="(item, index) in events" :key="index">
+      <div class="store-header">
+        <p>{{moment(item.timestamp).format('DD/MM/YYYY') }}</p>
+        <p>{{moment(item.timestamp).format('hh:mm') }}</p>
+      </div>
+      <div class="store-body">
+        <div class="body-item" v-for="(custom, index) in item.custom_data" :key="index">
+          <p>{{ custom.key }} {{ custom.value }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -73,9 +76,23 @@ export default {
   display: flex;
   flex-direction: column;
 }
-
-.dito .patio-savassi,
-.bh-shopping {
+.dito .store {
   margin: 2rem;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 5px;
 }
+.dito .store .store-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid #DCDCDC;
+}
+.dito .store .store-header p {
+  margin: 1rem;
+}
+.dito .store .store-body .body-item {
+  border-bottom: 2px solid #DCDCDC;
+}
+
 </style>
